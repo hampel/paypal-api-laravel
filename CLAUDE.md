@@ -75,16 +75,16 @@ application's override there; probed, `HttpClientOverrideTest` fails with `singl
 
 It does not bind `Psr\Http\Client\ClientInterface`, and does not read it: in an application with
 several API wrappers installed, the last provider to claim that key would supply every package's
-transport. **Do not add a fallback to `ClientInterface` when it is bound.**
-`SharedPsr18BindingTest` covers both registration orders and a faked sibling adapter.
+transport. **Do not add a fallback to `ClientInterface` when it is bound.** `SharedPsr18BindingTest`
+covers both registration orders and a faked adapter from another package.
 
-The adapter is a copy of the one in the sibling Laravel API wrappers, and its docblock carries the
-reasoning for each load-bearing decision: rebuilt per send, factory resolved per send, one Guzzle
-handler reused, `send()` with four options set by hand (Laravel 12 reads `laravel_data` and
-`on_stats` without a default, so only the Laravel 12 CI job catches their removal), and transport
-options passed on from an allowlist. `TransportTest` pins the options. **The core catches
-`ClientExceptionInterface`, not `\Throwable`**, so `StrayRequestException` reaches a consumer's
-test untouched; `HttpFakeTest` asserts it.
+The adapter is the same as in the author's other Laravel API wrappers, such as
+`hampel/saasu-api-laravel`, and its docblock carries the reasoning for each load-bearing decision:
+rebuilt per send, factory resolved per send, one Guzzle handler reused, `send()` with four options
+set by hand (Laravel 12 reads `laravel_data` and `on_stats` without a default, so only the Laravel
+12 CI job catches their removal), and transport options passed on from an allowlist. `TransportTest`
+pins the options. **The core catches `ClientExceptionInterface`, not `\Throwable`**, so
+`StrayRequestException` reaches a consumer's test untouched; `HttpFakeTest` asserts it.
 
 ## Facts worth not rediscovering
 
