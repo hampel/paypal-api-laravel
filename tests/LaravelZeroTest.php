@@ -94,7 +94,7 @@ final class LaravelZeroTest extends \PHPUnit\Framework\TestCase
     public function a_token_in_a_file_store_outlives_the_run_that_fetched_it(): void
     {
         // Two runs of a CLI tool, each a fresh application over the same cache directory.
-        $this->cacheDirectory = sys_get_temp_dir() . '/paypal-api-laravel-' . bin2hex(random_bytes(6));
+        $this->cacheDirectory = sys_get_temp_dir() . '/' . uniqid('paypal-api-laravel-', true);
 
         foreach (['first-run-token', 'second-run-token'] as $offered) {
             $app = $this->laravelZeroApplication(function (Application $app): void {
