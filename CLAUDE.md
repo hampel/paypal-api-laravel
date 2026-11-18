@@ -103,10 +103,10 @@ test untouched; `HttpFakeTest` asserts it.
   Tests that swap the factory set it again on the new one.
 - **`Transactions::each()` is passed through untouched**, so `getReturn()` still reads its last
   page through the facade. `HttpFakeTest::the_walk_hands_back_its_last_page_through_the_facade`.
-- **An empty 200 to the token request surfaces as the core's `InvalidArgumentException`**, from
-  `AccessGrant::fromResponse()`, not `MalformedResponseException`: the core refuses an empty body
-  on a read but not on a POST. Loud either way; `ExceptionPassthroughTest` pins it, and the type is
-  the core's to change.
+- **An empty 200 to the token request is `MalformedResponseException`**, which is what
+  `Http::fake()` with no routes produces. Core `d05486f` onwards; before it the core raised
+  `InvalidArgumentException` from `AccessGrant::fromResponse()`. `ExceptionPassthroughTest` pins
+  the type.
 - **`failOnDeprecation` is inert in a Testbench package without help.**
   `withoutDeprecationHandling()` in `setUp()` covers test-executed paths; `ConfigurationTest`
   registers and boots the provider against an application built in the test body to cover

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Hampel\PayPal\Api\Laravel\Tests;
 
 use Hampel\PayPal\Api\Exception\ClientException;
-use Hampel\PayPal\Api\Exception\ExceptionInterface;
 use Hampel\PayPal\Api\Exception\MalformedResponseException;
 use Hampel\PayPal\Api\Exception\NotAuthenticatedException;
 use Hampel\PayPal\Api\Exception\NotFoundException;
@@ -121,13 +120,12 @@ final class ExceptionPassthroughTest extends TestCase
         // Http::fake() with no arguments answers every request with an empty 200 - the easiest
         // mistake to make in a consumer's suite. The token request is the first to reach it.
         //
-        // The core refuses an empty body on a read as MalformedResponseException, but accepts one
-        // on a POST, so the token request's empty answer reaches AccessGrant::fromResponse() and is
-        // refused there as the core's InvalidArgumentException. Loud either way, which is what
-        // this pins; the narrower type is the core's to choose.
+        // The token request accepts an empty body at the transport, as any POST does, and
+        // Authorisation::token() refuses a token response with no token - malformed, like any
+        // other unusable answer. Core d05486f; before it, this was InvalidArgumentException.
         Http::fake();
 
-        $this->expectException(ExceptionInterface::class);
+        $this->expectException(MalformedResponseException::class);
         $this->expectExceptionMessage('without an access_token');
 
         PayPal::transactions()->balances();
