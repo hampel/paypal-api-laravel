@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Requires PHP 8.3 or later and Laravel 12.71 or 13.40 or later
 - Requires `hampel/paypal-api` `^0.1`
 - `PayPalServiceProvider`, `PayPalManager` and the `PayPal` facade for `hampel/paypal-api`
 - Named connections, each a REST app's `client_id`, `secret` and `environment`;
