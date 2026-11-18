@@ -319,8 +319,8 @@ this traffic. The core package logs every request at `debug` through PSR-3.
 
 ## Versioning
 
-`hampel/paypal-api` is 0.x, so its public API can change in a minor release; this package
-constrains it narrowly and expects to bump.
+This package requires `hampel/paypal-api` `^0.1`. That package is 0.x, so its public API can
+change in a minor release; this package constrains it narrowly and expects to bump.
 
 ## License
 

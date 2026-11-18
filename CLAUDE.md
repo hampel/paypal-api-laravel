@@ -88,9 +88,9 @@ test untouched; `HttpFakeTest` asserts it.
 
 ## Facts worth not rediscovering
 
-- **The core is required as `dev-master` through a `vcs` repository at `../paypal-api`** until it
-  is tagged. CI cannot resolve that path, so CI fails until the constraint becomes a tagged range
-  and the `repositories` entry is removed — which is the first step of the first release.
+- **The core is required as `^0.1`, from Packagist.** It is 0.x, so a minor release may break
+  this package; widen the constraint only after `composer check` passes against the new minor.
+  Until 0.1.0 it was `dev-master` through a local `vcs` repository, which CI could not resolve.
 - **The named-connection accessor is `client()` because `connection()` is taken** by `Client`.
   `FacadeConformanceTest::the_manager_does_not_shadow_a_client_method` keeps any name from being
   reintroduced. The config key is still `connections`.

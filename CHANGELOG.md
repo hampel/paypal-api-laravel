@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Requires `hampel/paypal-api` `^0.1`
 - `PayPalServiceProvider`, `PayPalManager` and the `PayPal` facade for `hampel/paypal-api`
 - Named connections, each a REST app's `client_id`, `secret` and `environment`;
   `PayPal::client('name')` reaches one

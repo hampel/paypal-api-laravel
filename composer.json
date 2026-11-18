@@ -21,23 +21,16 @@
     ],
     "homepage": "https://github.com/hampel/paypal-api-laravel",
     "license": "MIT",
-    "repositories": [
-        {
-            "name": "paypal-api",
-            "type": "vcs",
-            "url": "../paypal-api"
-        }
-    ],
     "require": {
         "php": ">=8.3",
         "guzzlehttp/guzzle": "^7.8|^8.0",
         "guzzlehttp/psr7": "^2.0|^3.0",
-        "hampel/paypal-api": "dev-master",
+        "hampel/paypal-api": "^0.1",
         "illuminate/contracts": "^12.0|^13.0",
         "illuminate/http": "^12.0|^13.0",
         "illuminate/support": "^12.0|^13.0",
         "psr/http-client": "^1.0",
-        "psr/http-factory": "^1.0",
+        "psr/http-factory": "^1.1",
         "psr/http-message": "^1.1|^2.0",
         "psr/log": "^1.1|^2.0|^3.0"
     },
