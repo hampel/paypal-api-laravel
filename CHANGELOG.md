@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased
+## 0.1.0 (2026-11-18)
 
 - Requires PHP 8.3 or later and Laravel 12.71 or 13.40 or later
 - Requires `hampel/paypal-api` `^0.1`
